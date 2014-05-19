@@ -67,12 +67,17 @@ class Uploader
 end
 
 file_server = Rack::File.new("public")
+directory_server = Rack::Directory.new("public")
 
 application = lambda do |env|
   request = Rack::Request.new(env)
   response = Rack::Response.new
   if request.get?
-    file_server.call(env)
+    if request.path.end_with?("/")
+      directory_server.call(env)
+    else
+      file_server.call(env)
+    end
   else
     uploader = Uploader.new(request, response)
     uploader.run
