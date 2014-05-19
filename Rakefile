@@ -15,7 +15,7 @@ task :build do
   Dir.chdir(base_name) do
     configure_args = []
     if ENV["DEBUG"] == "yes"
-      configure_args << "--with-debug"
+      configure_args << "--enable-debug"
     end
     sh("./configure",
        "--prefix=#{install_dir}",
