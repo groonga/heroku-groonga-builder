@@ -13,9 +13,14 @@ task :build do
 
   install_dir = File.join(Dir.pwd, "vendor", "groonga")
   Dir.chdir(base_name) do
+    configure_args = []
+    if ENV["DEBUG"] == "yes"
+      configure_args << "--with-debug"
+    end
     sh("./configure",
        "--prefix=#{install_dir}",
-       "--disable-document")
+       "--disable-document",
+       *configure_args)
     sh("make", "-j")
     sh("make", "install")
   end
