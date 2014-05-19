@@ -21,7 +21,7 @@ task :build do
        "--prefix=#{install_dir}",
        "--disable-document",
        *configure_args)
-    sh("make", "-j")
+    sh("make", "-j4")
     sh("make", "install")
   end
 
