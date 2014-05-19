@@ -1,4 +1,5 @@
 require "pathname"
+require "net/http"
 
 task :default => :build
 
@@ -19,5 +20,20 @@ task :build do
     sh("make", "install")
   end
 
-  sh("tar", "cJf", "heroku-#{base_name}.tar.xz", "vendor/groonga")
+  built_archive_name = "heroku-#{base_name}.tar.xz"
+  sh("tar", "cJf", built_archive_name, "vendor/groonga")
+
+  upload_base_url = ENV["UPLOAD_BASE_URL"]
+  upload_base_url ||= "http://groonga-builder.herokuapp.com"
+  upload_url = "#{upload_base_url}/#{built_archive_name}"
+  uri = URI(upload_url)
+  Net::HTTP.start(uri.host, uri.port) do |http|
+    response = File.open(built_archive_name, "rb") do |archive|
+      request = Net::HTTP::Put.new
+      request.body = archive
+      http.request(request)
+    end
+    puts(response.code)
+    puts(response.body)
+  end
 end
