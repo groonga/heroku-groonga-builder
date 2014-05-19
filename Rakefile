@@ -3,9 +3,8 @@ require "net/http"
 
 task :default => :build
 
-groonga_version = "4.0.1"
-
 task :build do
+  groonga_version = ENV["GROONGA_VERSION"] || "4.0.1"
   base_name = "groonga-#{groonga_version}"
   archive_name = "#{base_name}.tar.gz"
   sh("curl", "-O", "http://packages.groonga.org/source/groonga/#{archive_name}")
