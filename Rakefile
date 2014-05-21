@@ -1,6 +1,10 @@
 task :default => :build
 
 task :build do
+  if ENV["GITHUB_TOKEN"].nil?
+    raise "must set GITHUB_TOKEN environment variable"
+  end
+
   groonga_version = ENV["GROONGA_VERSION"] || "4.0.1"
   base_name = "groonga-#{groonga_version}"
   archive_name = "#{base_name}.tar.gz"
@@ -24,11 +28,22 @@ task :build do
   built_archive_name = "heroku-#{base_name}.tar.xz"
   sh("tar", "cJf", built_archive_name, "vendor/groonga")
 
-  upload_base_url = ENV["UPLOAD_BASE_URL"]
-  upload_base_url ||= "http://groonga-builder.herokuapp.com"
-  upload_url = "#{upload_base_url}/#{built_archive_name}"
-  sh("curl",
-     "--request", "PUT",
-     "--data-binary", "@#{built_archive_name}",
-     upload_url)
+  go_version = "1.2.2"
+  go_archive_name = "go#{go_version}.linux-amd64.tar.gz"
+  sh("curl", "-O", "https://storage.googleapis.com/golang/#{go_archive_name}")
+  sh("tar", "xf", go_archive_name)
+
+  go_root = File.join(Dir.pwd, "go")
+  ENV["GOROOT"] = go_root
+  go_path = File.join(Dir.pwd, "work", "go")
+  mkdir_p(go_path)
+  ENV["GOPATH"] = go_path
+  sh(File.join(go_root, "go"), "get", "github.com/aktau/github-release")
+  sh(File.join(go_path, "github-release"),
+     "upload",
+     "--user", "groonga",
+     "--repo", "groonga",
+     "--tag", "v#{groonga_version}",
+     "--name", built_archive_name,
+     "--file", built_archive_name)
 end
