@@ -13,8 +13,8 @@ task :go do
   ENV["GOPATH"] = go_path
 
   paths = [
-    go_path,
-    go_root,
+    File.join(go_path, "bin"),
+    File.join(go_root, "bin"),
     ENV["PATH"],
   ]
   ENV["PATH"] = paths.join(File::PATH_SEPARATOR)
