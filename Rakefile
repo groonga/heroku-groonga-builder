@@ -43,6 +43,7 @@ task :build => :github_release do
     end
     sh("./configure",
        "--prefix=#{install_dir}",
+       "--disable-static",
        "--disable-document",
        *configure_args)
     sh("make", "-j4")
