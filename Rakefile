@@ -29,7 +29,7 @@ task :build => :github_release do
     raise "must set GITHUB_TOKEN environment variable"
   end
 
-  groonga_version = ENV["GROONGA_VERSION"] || "4.0.1"
+  groonga_version = ENV["GROONGA_VERSION"] || "4.0.2"
   base_name = "groonga-#{groonga_version}"
   archive_name = "#{base_name}.tar.gz"
   sh("curl", "-O", "http://packages.groonga.org/source/groonga/#{archive_name}")
