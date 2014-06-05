@@ -2,6 +2,20 @@ require "octokit"
 
 task :default => :build
 
+@top_dir = Dir.pwd
+
+def top_dir
+  @top_dir
+end
+
+def relative_install_prefix
+  File.join("vendor", "groonga")
+end
+
+def absolete_install_prefix
+  File.join(top_dir, relative_install_prefix)
+end
+
 def github_token
   ENV["GITHUB_TOKEN"]
 end
@@ -47,14 +61,13 @@ def build_groonga
   sh("curl", "-O", "http://packages.groonga.org/source/groonga/#{archive_name}")
   sh("tar", "xf", archive_name)
 
-  install_dir = File.join(Dir.pwd, "vendor", "groonga")
   Dir.chdir(base_name) do
     configure_args = []
     if ENV["DEBUG"] == "yes"
       configure_args << "--enable-debug"
     end
     sh("./configure",
-       "--prefix=#{install_dir}",
+       "--prefix=#{absolete_install_prefix}",
        "--disable-static",
        "--disable-document",
        *configure_args)
@@ -63,7 +76,7 @@ def build_groonga
   end
 
   built_archive_name = "heroku-#{base_name}.tar.xz"
-  sh("tar", "cJf", built_archive_name, "vendor/groonga")
+  sh("tar", "cJf", built_archive_name, relative_install_prefix)
 
   build_archive_name
 end
