@@ -24,6 +24,10 @@ def groonga_version
   ENV["GROONGA_VERSION"] || "4.0.2"
 end
 
+def groonga_base_name
+  "groonga-#{groonga_version}"
+end
+
 def groonga_tag_name
   "v#{groonga_version}"
 end
@@ -56,8 +60,7 @@ def ensure_create_release
 end
 
 def build_groonga
-  base_name = "groonga-#{groonga_version}"
-  archive_name = "#{base_name}.tar.gz"
+  archive_name = "#{groonga_base_name}.tar.gz"
   sh("curl", "-O", "http://packages.groonga.org/source/groonga/#{archive_name}")
   sh("tar", "xf", archive_name)
 
@@ -74,8 +77,10 @@ def build_groonga
     sh("make", "-j4")
     sh("make", "install")
   end
+end
 
-  built_archive_name = "heroku-#{base_name}.tar.xz"
+def archive
+  built_archive_name = "heroku-#{groonga_base_name}.tar.xz"
   sh("tar", "cJf", built_archive_name, relative_install_prefix)
 
   build_archive_name
@@ -94,6 +99,7 @@ task :build do
   end
 
   ensure_create_release
-  archive_name = build_groonga
+  build_groonga
+  archive_name = archive
   release_archive(archive_name)
 end
