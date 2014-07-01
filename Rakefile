@@ -3,6 +3,8 @@ require "octokit"
 task :default => :build
 
 class GroongaBuilder
+  include Rake::DSL
+
   def initialize
     @top_dir = Dir.pwd
     @github_token = ENV["GITHUB_TOKEN"]
