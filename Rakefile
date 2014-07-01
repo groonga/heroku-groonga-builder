@@ -17,7 +17,7 @@ class GroongaBuilder
     ensure_release
     build_groonga
     archive_name = archive
-    release_archive(archive_name)
+    upload_archive(archive_name)
   end
 
   private
