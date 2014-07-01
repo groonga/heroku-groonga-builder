@@ -95,6 +95,9 @@ class GroongaBuilder
 
   def upload_archive(archive_name)
     release = find_release
+    options = {
+      :content_type => "application/x-xz",
+    }
     client.upload_asset(release.url, archive_name)
   end
 end
