@@ -72,7 +72,7 @@ class GroongaBuilder
        "http://packages.groonga.org/source/groonga/#{archive_name}")
     sh("tar", "xf", archive_name)
 
-    Dir.chdir(base_name) do
+    Dir.chdir(groonga_base_name) do
       configure_args = []
       if ENV["DEBUG"] == "yes"
         configure_args << "--enable-debug"
