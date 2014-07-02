@@ -98,7 +98,7 @@ class GroongaBuilder
     options = {
       :content_type => "application/x-xz",
     }
-    client.upload_asset(release.url, archive_name)
+    client.upload_asset(release.url, archive_name, options)
   end
 end
 
