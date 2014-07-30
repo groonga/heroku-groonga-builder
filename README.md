@@ -4,8 +4,9 @@ This is a Heroku application that builds Groonga package for Heroku.
 
 ## How to use?
 
-You need to get GitHub access token. You can get it at
-[your configuration page](https://github.com/settings/applications).
+1. Sign up Heroku [Heroku sign up page](https://www.heroku.com)
+2. Get GitHub access token [your configuration page](https://github.com/settings/applications)
+3. Install [Heroku toolbelt](https://toolbelt.heroku.com)
 
 Use the following command lines to build Groonga package for Heroku
 and upload it to Groonga's release page. You need to replace
