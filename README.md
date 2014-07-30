@@ -18,3 +18,7 @@ access token.
     % heroku apps:create
     % git push heroku master
     % heroku run:detached rake GITHUB_TOKEN=YOUR_GITHUB_TOKEN
+
+Use the following command line to see the progress.
+
+    % heroku logs --tail
