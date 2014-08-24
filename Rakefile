@@ -101,6 +101,7 @@ class GroongaBuilder
          "--prefix=#{absolete_install_prefix}",
          "--disable-static",
          "--disable-document",
+	 "--with-message-pack=#{build_msgpack}",
          *configure_args)
       sh("make", "-j4")
       sh("make", "install")
