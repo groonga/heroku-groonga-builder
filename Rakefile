@@ -66,6 +66,26 @@ class GroongaBuilder
     client.create_release(github_groonga_repository, groonga_tag_name)
   end
 
+  def build_msgpack
+    msgpack_version = "0.5.9"
+    msgpack_archive_name = "msgpack-#{msgpack_version}.tar.gz"
+    msgpack_prefix = File.join(@top_dir, File.join("vender", "msgpack"))
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
+       "https://github.com/msgpack/msgpack-c/releases/download/cpp-#{msgpack_version}/#{msgpack_archive_name}")
+    sh("tar", "xf", archive_name)
+
+    Dir.chdir("msgpack-#{msgpack_version}") do
+      sh("./configure",
+	 "--prefix=#{msgpack_prefix}")
+      sh("make", "-j4")
+      sh("make", "install")
+    end
+    return msgpack_prefix
+  end
+
   def build_groonga
     archive_name = "#{groonga_base_name}.tar.gz"
     sh("curl", "-O",
