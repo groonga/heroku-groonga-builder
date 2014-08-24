@@ -88,7 +88,10 @@ class GroongaBuilder
 
   def build_groonga
     archive_name = "#{groonga_base_name}.tar.gz"
-    sh("curl", "-O",
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
        "http://packages.groonga.org/source/groonga/#{archive_name}")
     sh("tar", "xf", archive_name)
 
