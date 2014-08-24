@@ -68,16 +68,16 @@ class GroongaBuilder
 
   def build_msgpack
     msgpack_version = "0.5.9"
-    msgpack_archive_name = "msgpack-#{msgpack_version}.tar.gz"
+    msgpack_archive_name = "msgpack-#{msgpack_version}"
     msgpack_prefix = File.join(@top_dir, File.join("vendor", "msgpack"))
     sh("curl",
        "--silent",
        "--remote-name",
        "--location",
-       "https://github.com/msgpack/msgpack-c/releases/download/cpp-#{msgpack_version}/#{msgpack_archive_name}")
+       "https://github.com/msgpack/msgpack-c/releases/download/cpp-#{msgpack_version}/#{msgpack_archive_name}.tar.gz")
     sh("tar", "xf", archive_name)
 
-    Dir.chdir("msgpack-#{msgpack_version}") do
+    Dir.chdir(msgpack_archive_name) do
       sh("./configure",
 	 "--prefix=#{msgpack_prefix}")
       sh("make", "-j4")
