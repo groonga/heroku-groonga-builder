@@ -75,7 +75,7 @@ class GroongaBuilder
        "--remote-name",
        "--location",
        "https://github.com/msgpack/msgpack-c/releases/download/cpp-#{msgpack_version}/#{msgpack_archive_name}.tar.gz")
-    sh("tar", "xf", archive_name)
+    sh("tar", "xf", msgpack_archive_name)
 
     Dir.chdir(msgpack_archive_name) do
       sh("./configure",
