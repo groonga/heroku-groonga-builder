@@ -77,6 +77,7 @@ class GroongaBuilder
        "--silent",
        "--remote-name",
        "--location",
+       "--fail",
        "https://github.com/msgpack/msgpack-c/releases/download/cpp-#{msgpack_version}/#{msgpack_archive_name}.tar.gz")
     sh("tar", "xf", "#{msgpack_archive_name}.tar.gz")
 
@@ -94,6 +95,7 @@ class GroongaBuilder
        "--silent",
        "--remote-name",
        "--location",
+       "--fail",
        "http://packages.groonga.org/source/groonga/#{archive_name}")
     sh("tar", "xf", archive_name)
 
