@@ -82,7 +82,7 @@ class GroongaBuilder
 
     Dir.chdir(msgpack_archive_name) do
       sh("./configure",
-	 "--prefix=#{msgpack_prefix}")
+         "--prefix=#{msgpack_prefix}")
       sh("make", "-j4")
       sh("make", "install")
     end
@@ -90,7 +90,10 @@ class GroongaBuilder
 
   def build_groonga
     archive_name = "#{groonga_base_name}.tar.gz"
-    sh("curl", "-O",
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
        "http://packages.groonga.org/source/groonga/#{archive_name}")
     sh("tar", "xf", archive_name)
 
@@ -103,7 +106,7 @@ class GroongaBuilder
          "--prefix=#{absolete_install_prefix}",
          "--disable-static",
          "--disable-document",
-	 "--with-message-pack=#{build_msgpack}",
+         "--with-message-pack=#{build_msgpack}",
          *configure_args)
       sh("make", "-j4")
       sh("make", "install")
