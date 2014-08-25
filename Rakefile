@@ -29,6 +29,10 @@ class GroongaBuilder
     File.join(@top_dir, relative_install_prefix)
   end
 
+  def msgpack_prefix
+    File.join(@top_dir, "vendor", "msgpack")
+  end
+
   def groonga_version
     ENV["GROONGA_VERSION"] || "4.0.4"
   end
