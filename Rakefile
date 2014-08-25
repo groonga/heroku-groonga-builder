@@ -73,7 +73,6 @@ class GroongaBuilder
   def build_msgpack
     msgpack_version = "0.5.9"
     msgpack_archive_name = "msgpack-#{msgpack_version}"
-    msgpack_prefix = File.join(@top_dir, File.join("vendor", "msgpack"))
     sh("curl",
        "--silent",
        "--remote-name",
@@ -87,7 +86,6 @@ class GroongaBuilder
       sh("make", "-j4")
       sh("make", "install")
     end
-    return msgpack_prefix
   end
 
   def build_groonga
