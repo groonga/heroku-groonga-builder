@@ -84,7 +84,7 @@ class GroongaBuilder
 
     Dir.chdir(msgpack_archive_name) do
       sh("./configure",
-         "--prefix=#{msgpack_prefix}")
+         "--prefix=#{absolete_install_prefix}")
       sh("make", "-j4")
       sh("make", "install")
     end
@@ -109,7 +109,7 @@ class GroongaBuilder
          "--prefix=#{absolete_install_prefix}",
          "--disable-static",
          "--disable-document",
-         "--with-message-pack=#{msgpack_prefix}",
+         "--with-message-pack=#{absolete_install_prefix}",
          *configure_args)
       sh("make", "-j4")
       sh("make", "install")
