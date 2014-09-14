@@ -127,23 +127,6 @@ class GroongaBuilder
       sh("make", "check")
       sh("make", "install")
     end
-
-    ipadic_version = "2.7.0-20070801"
-    ipadic_archive_name = "mecab-ipadic-#{ipadic_version}"
-    sh("curl",
-       "--silent",
-       "--remote-name",
-       "--location",
-       "--fail",
-       "#{download_url}/#{ipadic_archive_name}.tar.gz")
-    sh("tar", "xf", "#{ipadic_archive_name}.tar.gz")
-    Dir.chdir(ipadic_archive_name) do
-      sh("./configure",
-	 "--prefix=#{absolete_mecab_prefix}",
-	 "--with-mecab-config=#{mecab_config}")
-      sh("make")
-      sh("make", "install")
-    end
   end
 
   def build_msgpack
