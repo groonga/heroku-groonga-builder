@@ -33,6 +33,10 @@ class GroongaBuilder
   def msgpack_prefix
     File.join(@top_dir, "vendor", "msgpack")
   end
+  
+  def mecab_prefix
+    File.join(@top_dir, "vendor", "mecab")
+  end
 
   def groonga_version
     ENV["GROONGA_VERSION"] || "4.0.5"
