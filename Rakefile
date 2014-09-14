@@ -109,7 +109,6 @@ class GroongaBuilder
   end
 
   def build_mecab
-    download_url = "https://mecab.googlecode.com/files"
     mecab_version = "0.996"
     mecab_archive_name = "mecab-#{mecab_version}"
     sh("curl",
@@ -117,7 +116,7 @@ class GroongaBuilder
        "--remote-name",
        "--location",
        "--fail",
-       "#{download_url}/#{mecab_archive_name}.tar.gz")
+       "https://mecab.googlecode.com/files/#{mecab_archive_name}.tar.gz")
     sh("tar", "xf", "#{mecab_archive_name}.tar.gz")
 
     Dir.chdir(mecab_archive_name) do
