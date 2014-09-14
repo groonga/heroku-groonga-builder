@@ -15,6 +15,7 @@ class GroongaBuilder
 
   def run
     ensure_release
+    build_kytea
     build_mecab
     build_msgpack
     build_groonga
@@ -192,7 +193,7 @@ class GroongaBuilder
 
   def archive
     archive_name = "heroku-#{groonga_base_name}.tar.xz"
-    sh("tar", "cJf", archive_name, relative_install_prefix, relative_mecab_prefix)
+    sh("tar", "cJf", archive_name, relative_install_prefix, relative_mecab_prefix, relative_kytea_prefix)
     archive_name
   end
 
