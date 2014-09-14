@@ -80,6 +80,25 @@ class GroongaBuilder
     client.create_release(github_groonga_repository, groonga_tag_name)
   end
 
+  def build_kytea
+    kytea_version = "0.4.6"
+    kytea_archive_name = "kytea-#{kytea_version}"
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
+       "--fail",
+       "http://www.phontron.com/kytea/download/#{kytea_archive_name}.tar.gz")
+    sh("tar", "xf", "#{kytea_archive_name}.tar.gz")
+
+    Dir.chdir(kytea_archive_name) do
+      sh("./configure",
+	 "--prefix=#{absolete_kytea_prefix}")
+      sh("make")
+      sh("make", "install")
+    end
+  end
+
   def build_mecab
     download_url = "https://mecab.googlecode.com/files"
     mecab_version = "0.996"
