@@ -127,7 +127,7 @@ class GroongaBuilder
       sh("make", "install")
     end
 
-    naist_jdic_version = "0.43"
+    naist_jdic_version = "0.4.3"
     naist_jdic_archive_name = "naist-jdic-#{naist_jdic_version}"
     sh("curl",
        "--silent",
