@@ -71,6 +71,42 @@ class GroongaBuilder
     client.create_release(github_groonga_repository, groonga_tag_name)
   end
 
+  def build_mecab
+    download_url = "https://mecab.googlecode.com/files"
+    mecab_version = "0.996"
+    mecab_archive_name = "mecab-#{mecab_version}"
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
+       "--fail",
+       "#{download_url}/#{mecab_archive_name}.tar.gz")
+    sh("tar", "xf", "#{mecab_archive_name}.tar.gz")
+
+    Dir.chdir(mecab_archive_name) do
+      sh("./configure",
+	 "--prefix=#{mecab_prefix}")
+      sh("make")
+      sh("make", "install")
+    end
+
+    ipadic_version = "2.7.0-20070801"
+    ipadic_archive_name = "mecab-ipadic-#{mecab_ipadic_version}"
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
+       "--fail",
+       "#{download_url}/#{ipadic_archive_name}.tar.gz")
+    sh("tar", "xf", "#{ipadic_archive_name}.tar.gz")
+    Dir.chdir(ipadic_archive_name) do
+      sh("./configure",
+	 "--prefix=#{mecab_prefix}")
+      sh("make")
+      sh("make", "install")
+    end
+  end
+
   def build_msgpack
     msgpack_version = "0.5.9"
     msgpack_archive_name = "msgpack-#{msgpack_version}"
