@@ -35,6 +35,10 @@ class GroongaBuilder
     File.join("vendor", "kytea")
   end
 
+  def absolete_install_prefix
+    File.join(@top_dir, relative_kytea_prefix)
+  end
+
   def relative_mecab_prefix
     File.join("vendor", "mecab")
   end
