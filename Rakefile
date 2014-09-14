@@ -31,10 +31,6 @@ class GroongaBuilder
     File.join(@top_dir, relative_install_prefix)
   end
 
-  def msgpack_prefix
-    File.join(@top_dir, "vendor", "msgpack")
-  end
-  
   def absolete_mecab_prefix
     File.join(@top_dir, "vendor", "mecab")
   end
