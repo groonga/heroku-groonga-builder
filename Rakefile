@@ -96,7 +96,7 @@ class GroongaBuilder
     end
 
     ipadic_version = "2.7.0-20070801"
-    ipadic_archive_name = "mecab-ipadic-#{mecab_ipadic_version}"
+    ipadic_archive_name = "mecab-ipadic-#{ipadic_version}"
     sh("curl",
        "--silent",
        "--remote-name",
