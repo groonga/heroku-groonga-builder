@@ -92,6 +92,7 @@ class GroongaBuilder
       sh("./configure",
 	 "--prefix=#{mecab_prefix}")
       sh("make")
+      sh("make", "check")
       sh("make", "install")
     end
 
