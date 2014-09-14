@@ -111,7 +111,7 @@ class GroongaBuilder
     sh("tar", "xf", "#{ipadic_archive_name}.tar.gz")
     Dir.chdir(ipadic_archive_name) do
       sh("./configure",
-	 "--prefix=#{mecab_prefix}"
+	 "--prefix=#{mecab_prefix}",
 	 "--with-mecab-config=#{mecab_config}")
       sh("make")
       sh("make", "install")
