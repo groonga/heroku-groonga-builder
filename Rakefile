@@ -15,6 +15,7 @@ class GroongaBuilder
 
   def run
     ensure_release
+    build_mecab
     build_msgpack
     build_groonga
     archive_name = archive
