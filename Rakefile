@@ -35,7 +35,7 @@ class GroongaBuilder
     File.join(@top_dir, "vendor", "msgpack")
   end
   
-  def mecab_prefix
+  def absolete_mecab_prefix
     File.join(@top_dir, "vendor", "mecab")
   end
 
@@ -94,7 +94,7 @@ class GroongaBuilder
 
     Dir.chdir(mecab_archive_name) do
       sh("./configure",
-	 "--prefix=#{mecab_prefix}")
+	 "--prefix=#{absolete_mecab_prefix}")
       sh("make")
       sh("make", "check")
       sh("make", "install")
@@ -111,7 +111,7 @@ class GroongaBuilder
     sh("tar", "xf", "#{ipadic_archive_name}.tar.gz")
     Dir.chdir(ipadic_archive_name) do
       sh("./configure",
-	 "--prefix=#{mecab_prefix}",
+	 "--prefix=#{absolete_mecab_prefix}",
 	 "--with-mecab-config=#{mecab_config}")
       sh("make")
       sh("make", "install")
