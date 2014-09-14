@@ -39,6 +39,10 @@ class GroongaBuilder
     File.join(@top_dir, "vendor", "mecab")
   end
 
+  def mecab_config
+    File.join(mecab_prefix, "bin", "mecab-config")
+  end
+
   def groonga_version
     ENV["GROONGA_VERSION"] || "4.0.5"
   end
@@ -107,7 +111,8 @@ class GroongaBuilder
     sh("tar", "xf", "#{ipadic_archive_name}.tar.gz")
     Dir.chdir(ipadic_archive_name) do
       sh("./configure",
-	 "--prefix=#{mecab_prefix}")
+	 "--prefix=#{mecab_prefix}"
+	 "--with-mecab-config=#{mecab_config}")
       sh("make")
       sh("make", "install")
     end
