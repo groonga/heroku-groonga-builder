@@ -40,7 +40,7 @@ class GroongaBuilder
   end
 
   def mecab_config
-    File.join(mecab_prefix, "bin", "mecab-config")
+    File.join(absolete_mecab_prefix, "bin", "mecab-config")
   end
 
   def groonga_version
