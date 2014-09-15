@@ -140,6 +140,7 @@ class GroongaBuilder
     Dir.chdir(naist_jdic_archive_name) do
       sh("./configure",
 	 "--prefix=#{absolete_mecab_prefix}",
+	 "--with-chasen-config=#{mecab_config}",
 	 "--with-charset=utf8")
       sh("make")
       sh("make", "install")
