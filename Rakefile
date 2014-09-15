@@ -127,20 +127,20 @@ class GroongaBuilder
       sh("make", "install")
     end
 
-    naist_jdic_version = "0.4.3"
-    naist_jdic_archive_name = "naist-jdic-#{naist_jdic_version}"
+    naist_jdic_version = "0.6.3b-20111013"
+    naist_jdic_archive_name = "mecab-naist-jdic-#{naist_jdic_version}"
     sh("curl",
        "--silent",
        "--remote-name",
        "--location",
        "--fail",
-       "http://iij.dl.sourceforge.jp/naist-jdic/31880/#{naist_jdic_archive_name}.tar.gz")
+       "http://iij.dl.sourceforge.jp/naist-jdic/53500/#{naist_jdic_archive_name}.tar.gz")
     sh("tar", "xf", "#{naist_jdic_archive_name}.tar.gz")
 
     Dir.chdir(naist_jdic_archive_name) do
       sh("./configure",
 	 "--prefix=#{absolete_mecab_prefix}",
-	 "--with-chasen-config=#{mecab_config}",
+	 "--with-mecab-config=#{mecab_config}",
 	 "--with-charset=utf8")
       sh("make")
       sh("make", "install")
