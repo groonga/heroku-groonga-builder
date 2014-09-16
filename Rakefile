@@ -28,7 +28,7 @@ class GroongaBuilder
     File.join("vendor", "groonga")
   end
 
-  def absolete_install_prefix
+  def absolute_install_prefix
     File.join(@top_dir, relative_install_prefix)
   end
 
@@ -36,7 +36,7 @@ class GroongaBuilder
     File.join("vendor", "kytea")
   end
 
-  def absolete_kytea_prefix
+  def absolute_kytea_prefix
     File.join(@top_dir, relative_kytea_prefix)
   end
 
@@ -44,12 +44,12 @@ class GroongaBuilder
     File.join("vendor", "mecab")
   end
   
-  def absolete_mecab_prefix
+  def absolute_mecab_prefix
     File.join(@top_dir, relative_mecab_prefix)
   end
 
   def mecab_config
-    File.join(absolete_mecab_prefix, "bin", "mecab-config")
+    File.join(absolute_mecab_prefix, "bin", "mecab-config")
   end
 
   def groonga_version
@@ -102,7 +102,7 @@ class GroongaBuilder
 
     Dir.chdir(kytea_archive_name) do
       sh("./configure",
-	 "--prefix=#{absolete_kytea_prefix}")
+	 "--prefix=#{absolute_kytea_prefix}")
       sh("make")
       sh("make", "install")
     end
@@ -122,7 +122,7 @@ class GroongaBuilder
 
     Dir.chdir(mecab_archive_name) do
       sh("./configure",
-	 "--prefix=#{absolete_mecab_prefix}")
+	 "--prefix=#{absolute_mecab_prefix}")
       sh("make")
       sh("make", "check")
       sh("make", "install")
@@ -139,7 +139,7 @@ class GroongaBuilder
     sh("tar", "xf", "#{ipadic_archive_name}.tar.gz")
     Dir.chdir(ipadic_archive_name) do
       sh("./configure",
-	 "--prefix=#{absolete_mecab_prefix}",
+	 "--prefix=#{absolute_mecab_prefix}",
 	 "--with-mecab-config=#{mecab_config}")
       sh("make")
       sh("make", "install")
@@ -159,7 +159,7 @@ class GroongaBuilder
 
     Dir.chdir(msgpack_archive_name) do
       sh("./configure",
-         "--prefix=#{absolete_install_prefix}")
+         "--prefix=#{absolute_install_prefix}")
       sh("make", "-j4")
       sh("make", "install")
     end
@@ -181,10 +181,10 @@ class GroongaBuilder
         configure_args << "--enable-debug"
       end
       sh("./configure",
-         "--prefix=#{absolete_install_prefix}",
+         "--prefix=#{absolute_install_prefix}",
          "--disable-static",
          "--disable-document",
-         "--with-message-pack=#{absolete_install_prefix}",
+         "--with-message-pack=#{absolute_install_prefix}",
          *configure_args)
       sh("make", "-j4")
       sh("make", "install")
