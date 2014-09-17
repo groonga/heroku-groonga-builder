@@ -149,7 +149,7 @@ class GroongaBuilder
     mecab_rc_content = mecab_rc_path.read
     naist_jdic_dir = File.join(absolete_install_prefix, "lib", "mecab", "dic", "naist-jdic")
     File.open(mecab_rc_path, "w") do |mecab_rc|
-      mecab_rc.print(mecab_rc_content.gsub(/^dicdir\s*=,+$/,
+      mecab_rc.print(mecab_rc_content.gsub(/^dicdir\s*=.+$/,
 					   "dicdir = #{naist_jdic_dir}"))
     end
   end
