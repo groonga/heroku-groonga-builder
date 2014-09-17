@@ -143,7 +143,7 @@ class GroongaBuilder
 	 "--with-mecab-config=#{mecab_config}",
 	 "--with-charset=utf8")
       sh("make")
-      sh("make", "install")
+      sh("make", "install-data")
     end
   end
 
