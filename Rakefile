@@ -146,7 +146,9 @@ class GroongaBuilder
       sh("make", "install-data")
     end
     mecab_rc_path = File.join(absolete_mecab_prefix, "etc", "mecabrc")
-    mecab_rc_content = mecab_rc_path.read
+    mecab_rc_content = File.open(mecab_rc_path, "r") do |mecab_rc|
+      mecab_rc.read
+    end
     naist_jdic_dir = File.join(absolete_install_prefix, "lib", "mecab", "dic", "naist-jdic")
     File.open(mecab_rc_path, "w") do |mecab_rc|
       mecab_rc.print(mecab_rc_content.gsub(/^dicdir\s*=.+$/,
