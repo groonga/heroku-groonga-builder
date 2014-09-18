@@ -109,7 +109,6 @@ class GroongaBuilder
   end
 
   def build_mecab
-    download_url = "https://mecab.googlecode.com/files"
     mecab_version = "0.996"
     mecab_archive_name = "mecab-#{mecab_version}"
     sh("curl",
@@ -117,7 +116,7 @@ class GroongaBuilder
        "--remote-name",
        "--location",
        "--fail",
-       "#{download_url}/#{mecab_archive_name}.tar.gz")
+       "https://mecab.googlecode.com/files/#{mecab_archive_name}.tar.gz")
     sh("tar", "xf", "#{mecab_archive_name}.tar.gz")
 
     Dir.chdir(mecab_archive_name) do
@@ -128,21 +127,32 @@ class GroongaBuilder
       sh("make", "install")
     end
 
-    ipadic_version = "2.7.0-20070801"
-    ipadic_archive_name = "mecab-ipadic-#{ipadic_version}"
+    naist_jdic_version = "0.6.3b-20111013"
+    naist_jdic_archive_name = "mecab-naist-jdic-#{naist_jdic_version}"
     sh("curl",
        "--silent",
        "--remote-name",
        "--location",
        "--fail",
-       "#{download_url}/#{ipadic_archive_name}.tar.gz")
-    sh("tar", "xf", "#{ipadic_archive_name}.tar.gz")
-    Dir.chdir(ipadic_archive_name) do
+       "http://iij.dl.sourceforge.jp/naist-jdic/53500/#{naist_jdic_archive_name}.tar.gz")
+    sh("tar", "xf", "#{naist_jdic_archive_name}.tar.gz")
+
+    Dir.chdir(naist_jdic_archive_name) do
       sh("./configure",
 	 "--prefix=#{absolute_mecab_prefix}",
 	 "--with-mecab-config=#{mecab_config}")
+	 "--with-charset=utf8")
       sh("make")
-      sh("make", "install")
+      sh("make", "install-data")
+    end
+    mecab_rc_path = File.join(absolete_mecab_prefix, "etc", "mecabrc")
+    mecab_rc_content = File.open(mecab_rc_path, "r") do |mecab_rc|
+      mecab_rc.read
+    end
+    naist_jdic_dir = File.join(absolete_install_prefix, "lib", "mecab", "dic", "naist-jdic")
+    File.open(mecab_rc_path, "w") do |mecab_rc|
+      mecab_rc.print(mecab_rc_content.gsub(/^dicdir\s*=.+$/,
+					   "dicdir = #{naist_jdic_dir}"))
     end
   end
 
