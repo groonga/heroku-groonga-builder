@@ -145,7 +145,7 @@ class GroongaBuilder
       sh("make")
       sh("make", "install-data")
     end
-    mecab_rc_path = File.join(absolete_mecab_prefix, "etc", "mecabrc")
+    mecab_rc_path = File.join(absolute_mecab_prefix, "etc", "mecabrc")
     mecab_rc_content = File.open(mecab_rc_path, "r") do |mecab_rc|
       mecab_rc.read
     end
