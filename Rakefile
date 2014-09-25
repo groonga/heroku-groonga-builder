@@ -15,7 +15,6 @@ class GroongaBuilder
 
   def run
     ensure_release
-    build_kytea
     build_mecab
     build_msgpack
     build_groonga
@@ -30,14 +29,6 @@ class GroongaBuilder
 
   def absolute_install_prefix
     File.join(@top_dir, relative_install_prefix)
-  end
-
-  def relative_kytea_prefix
-    File.join("vendor", "kytea")
-  end
-
-  def absolute_kytea_prefix
-    File.join(@top_dir, relative_kytea_prefix)
   end
 
   def relative_mecab_prefix
@@ -87,25 +78,6 @@ class GroongaBuilder
     return if release_exist?
 
     client.create_release(github_groonga_repository, groonga_tag_name)
-  end
-
-  def build_kytea
-    kytea_version = "0.4.6"
-    kytea_archive_name = "kytea-#{kytea_version}"
-    sh("curl",
-       "--silent",
-       "--remote-name",
-       "--location",
-       "--fail",
-       "http://www.phontron.com/kytea/download/#{kytea_archive_name}.tar.gz")
-    sh("tar", "xf", "#{kytea_archive_name}.tar.gz")
-
-    Dir.chdir(kytea_archive_name) do
-      sh("./configure",
-	 "--prefix=#{absolute_kytea_prefix}")
-      sh("make")
-      sh("make", "install")
-    end
   end
 
   def build_mecab
@@ -203,7 +175,7 @@ class GroongaBuilder
 
   def archive
     archive_name = "heroku-#{groonga_base_name}.tar.xz"
-    sh("tar", "cJf", archive_name, relative_install_prefix, relative_mecab_prefix, relative_kytea_prefix)
+    sh("tar", "cJf", archive_name, relative_install_prefix, relative_mecab_prefix)
     archive_name
   end
 
