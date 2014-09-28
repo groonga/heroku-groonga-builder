@@ -1,6 +1,7 @@
 # heroku-groonga-builder
 
-This is a Heroku application that builds Groonga package for Heroku.
+This is a Heroku application that builds Groonga package for Heroku
+and builds libraries to make it easy to use Groonga.
 
 ## How to use?
 
@@ -22,3 +23,10 @@ access token.
 Use the following command line to see the progress.
 
     % heroku logs --tail
+
+## Can use libraries
+
+* Groonga
+  * License: [LGPLv2.1](http://opensource.org/licenses/lgpl-2.1.php)
+* MessagePack
+  * License: [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
