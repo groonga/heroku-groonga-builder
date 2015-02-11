@@ -93,7 +93,7 @@ class GroongaBuilder
 
     Dir.chdir(mecab_archive_name) do
       sh("./configure",
-	 "--prefix=#{absolute_mecab_prefix}")
+         "--prefix=#{absolute_mecab_prefix}")
       sh("make")
       sh("make", "check")
       sh("make", "install")
@@ -111,9 +111,9 @@ class GroongaBuilder
 
     Dir.chdir(naist_jdic_archive_name) do
       sh("./configure",
-	 "--prefix=#{absolute_mecab_prefix}",
-	 "--with-mecab-config=#{mecab_config}",
-	 "--with-charset=utf8")
+         "--prefix=#{absolute_mecab_prefix}",
+         "--with-mecab-config=#{mecab_config}",
+         "--with-charset=utf8")
       sh("make")
       sh("make", "install-data")
     end
@@ -124,7 +124,7 @@ class GroongaBuilder
     naist_jdic_dir = File.join(absolute_mecab_prefix, "lib", "mecab", "dic", "naist-jdic")
     File.open(mecab_rc_path, "w") do |mecab_rc|
       mecab_rc.print(mecab_rc_content.gsub(/^dicdir\s*=.+$/,
-					   "dicdir = #{naist_jdic_dir}"))
+                                           "dicdir = #{naist_jdic_dir}"))
     end
   end
 
