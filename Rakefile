@@ -15,8 +15,10 @@ class GroongaBuilder
 
   def run
     ensure_release
+    setup_environment_variables
     build_mecab
     build_msgpack
+    build_lz4
     build_groonga
     archive_name = archive
     upload_archive(archive_name)
@@ -78,6 +80,14 @@ class GroongaBuilder
     return if release_exist?
 
     client.create_release(github_groonga_repository, groonga_tag_name)
+  end
+
+  def setup_environment_variables
+    ENV["PKG_CONFIG_PATH"] =
+      File.join(absolute_install_prefix, "lib", "pkg-config")
+    path = ENV["PATH"]
+    path += [File.join(absolute_install_prefix, "bin")]
+    ENV["PATH"] = path.join(File::PATH_SEPARATOR)
   end
 
   def build_mecab
@@ -147,6 +157,21 @@ class GroongaBuilder
     end
   end
 
+  def build_lz4
+    lz4_version = "r127"
+    lz4_archive_name = "lz4-#{lz4_version}"
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
+       "--fail",
+       "https://github.com/Cyan4973/lz4/archive/#{lz4_archive_name}.tar.gz")
+    sh("tar", "xf", "#{lz4_archive_name}.tar.gz")
+
+    Dir.chdir(lz4_archive_name) do
+      sh("make", "install", "PREFIX=#{absolute_install_prefix}")
+    end
+  end
   def build_groonga
     archive_name = "#{groonga_base_name}.tar.gz"
     sh("curl",
@@ -167,6 +192,7 @@ class GroongaBuilder
          "--disable-static",
          "--disable-document",
          "--with-message-pack=#{absolute_install_prefix}",
+         "--with-lz4",
          *configure_args)
       sh("make", "-j4")
       sh("make", "install")
