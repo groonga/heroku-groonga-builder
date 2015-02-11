@@ -163,9 +163,10 @@ class GroongaBuilder
     sh("curl",
        "--silent",
        "--remote-name",
+       "--remote-header-name",
        "--location",
        "--fail",
-       "https://github.com/Cyan4973/lz4/archive/#{lz4_archive_name}.tar.gz")
+       "https://github.com/Cyan4973/lz4/archive/#{lz4_version}.tar.gz")
     sh("tar", "xf", "#{lz4_archive_name}.tar.gz")
 
     Dir.chdir(lz4_archive_name) do
