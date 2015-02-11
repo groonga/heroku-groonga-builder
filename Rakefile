@@ -34,7 +34,7 @@ class GroongaBuilder
   def relative_mecab_prefix
     File.join("vendor", "mecab")
   end
-  
+
   def absolute_mecab_prefix
     File.join(@top_dir, relative_mecab_prefix)
   end
