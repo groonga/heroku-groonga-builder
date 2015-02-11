@@ -85,7 +85,7 @@ class GroongaBuilder
   def setup_environment_variables
     ENV["PKG_CONFIG_PATH"] =
       File.join(absolute_install_prefix, "lib", "pkg-config")
-    path = ENV["PATH"]
+    path = ENV["PATH"].split(File::PATH_SEPARATOR)
     path += [File.join(absolute_install_prefix, "bin")]
     ENV["PATH"] = path.join(File::PATH_SEPARATOR)
   end
