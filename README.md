@@ -26,16 +26,16 @@ Use the following command line to see the progress.
 
 ## Libraries
 
-* Groonga
+* [Groonga](http://groonga.org/)
   * License: [LGPLv2.1](http://opensource.org/licenses/lgpl-2.1.php)
-* MessagePack
+* [MessagePack](http://msgpack.org/)
   * License: [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
-* MeCab
+* [MeCab](https://code.google.com/p/mecab/)
   * License:
     * [GPL v2](http://opensource.org/licenses/gpl-2.0.php)
     * [LGPL v2.1](http://opensource.org/licenses/lgpl-2.1.php)
     * [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
-* MeCab NAIST-jdic
+* [MeCab NAIST-jdic](http://sourceforge.jp/projects/naist-jdic/)
   * License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
-* LZ4
+* [LZ4](https://code.google.com/p/lz4/)
   * License: [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
