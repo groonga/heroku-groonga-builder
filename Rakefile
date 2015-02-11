@@ -203,7 +203,9 @@ class GroongaBuilder
 
   def archive
     archive_name = "heroku-#{groonga_base_name}.tar.xz"
-    sh("tar", "cJf", archive_name, relative_install_prefix, relative_mecab_prefix)
+    sh("tar", "cJf", archive_name,
+       relative_install_prefix,
+       relative_mecab_prefix)
     archive_name
   end
 
