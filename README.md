@@ -37,3 +37,5 @@ Use the following command line to see the progress.
     * [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 * MeCab NAIST-jdic
   * License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
+* LZ4
+  * License: [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
