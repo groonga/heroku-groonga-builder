@@ -31,8 +31,9 @@ Use the following command line to see the progress.
 * MessagePack
   * License: [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * MeCab
-  * License: [GPL v2](http://opensource.org/licenses/gpl-2.0.php)
-             [LGPL v2.1](http://opensource.org/licenses/lgpl-2.1.php)
-			 [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
+  * License:
+    * [GPL v2](http://opensource.org/licenses/gpl-2.0.php)
+    * [LGPL v2.1](http://opensource.org/licenses/lgpl-2.1.php)
+    * [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 * MeCab NAIST-jdic
   * License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
