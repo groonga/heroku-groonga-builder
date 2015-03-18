@@ -173,6 +173,7 @@ class GroongaBuilder
       sh("make", "install", "PREFIX=#{absolute_install_prefix}")
     end
   end
+  
   def build_groonga
     archive_name = "#{groonga_base_name}.tar.gz"
     sh("curl",
