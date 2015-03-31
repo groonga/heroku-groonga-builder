@@ -139,7 +139,7 @@ class GroongaBuilder
   end
 
   def build_msgpack
-    msgpack_version = "0.5.9"
+    msgpack_version = "1.0.1"
     msgpack_archive_name = "msgpack-#{msgpack_version}"
     sh("curl",
        "--silent",
