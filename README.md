@@ -6,7 +6,7 @@ and builds libraries to make it easy to use Groonga.
 ## How to use?
 
 1. Sign up Heroku [Heroku sign up page](https://www.heroku.com)
-2. Get GitHub access token [your configuration page](https://github.com/settings/applications)
+2. Get GitHub access token [your configuration page](https://github.com/settings/tokens)
 3. Install [Heroku toolbelt](https://toolbelt.heroku.com)
 
 Use the following command lines to build Groonga package for Heroku
