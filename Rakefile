@@ -46,7 +46,7 @@ class GroongaBuilder
   end
 
   def groonga_version
-    ENV["GROONGA_VERSION"] || "5.0.5"
+    ENV["GROONGA_VERSION"] || "5.0.6"
   end
 
   def groonga_base_name
