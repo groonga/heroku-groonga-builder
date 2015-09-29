@@ -158,7 +158,7 @@ class GroongaBuilder
   end
 
   def build_lz4
-    lz4_version = "r127"
+    lz4_version = "r131"
     lz4_archive_name = "lz4-#{lz4_version}"
     sh("curl",
        "--silent",
