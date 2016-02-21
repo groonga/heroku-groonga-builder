@@ -196,6 +196,7 @@ class GroongaBuilder
          "--with-message-pack=#{absolute_install_prefix}",
          "--with-mecab-config=#{mecab_config}",
          "--with-lz4",
+         "--enable-mruby",
          *configure_args)
       sh("make", "-j4")
       sh("make", "install")
