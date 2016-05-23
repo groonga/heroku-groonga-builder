@@ -198,7 +198,7 @@ class GroongaBuilder
          "--with-lz4",
          "--enable-mruby",
          *configure_args)
-      sh("make", "-j4")
+      sh("make")
       sh("make", "install")
     end
   end
