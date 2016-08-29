@@ -98,7 +98,7 @@ class GroongaBuilder
        "--remote-name",
        "--location",
        "--fail",
-       "https://mecab.googlecode.com/files/#{mecab_archive_name}.tar.gz")
+       "https://pecily.com/#{mecab_archive_name}.tar.gz")
     sh("tar", "xf", "#{mecab_archive_name}.tar.gz")
     
     Dir.chdir(mecab_archive_name) do
