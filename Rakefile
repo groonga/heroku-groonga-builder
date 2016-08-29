@@ -98,11 +98,9 @@ class GroongaBuilder
        "--remote-name",
        "--location",
        "--fail",
-       "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE")
-    ##       "https://mecab.googlecode.com/files/#{mecab_archive_name}.tar.gz")
-    sh("tar", "xf", "#{mecab_archive_name}.tar")
-    ##    sh("tar", "xf", "#{mecab_archive_name}.tar.gz")
-
+       "https://mecab.googlecode.com/files/#{mecab_archive_name}.tar.gz")
+    sh("tar", "xf", "#{mecab_archive_name}.tar.gz")
+    
     Dir.chdir(mecab_archive_name) do
       sh("./configure",
          "--prefix=#{absolute_mecab_prefix}")
