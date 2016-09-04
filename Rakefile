@@ -162,7 +162,7 @@ class GroongaBuilder
 
     Dir.chdir(msgpack_archive_name) do
       sh("./../#{cmake_archive_name}/bin/cmake",
-	 "-DCMAKE_INSTALL_PREFIX=#{absolute_instal_prefix}",
+	 "-DCMAKE_INSTALL_PREFIX=#{absolute_install_prefix}",
 	 ".")
       sh("make", "-j4")
       sh("make", "install")
