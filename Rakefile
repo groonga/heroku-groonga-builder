@@ -95,7 +95,6 @@ class GroongaBuilder
     mecab_archive_name = "mecab-#{mecab_version}"
     sh("curl",
        "--silent",
-       "--remote-name",
        "--location",
        "--fail",
        "--output",
