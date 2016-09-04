@@ -140,6 +140,16 @@ class GroongaBuilder
   end
 
   def build_msgpack
+    cmake_version = "3.6.1"
+    cmake_archive_name = "cmake-#{cmake_version}-Linux-x86_64"
+    sh("curl",
+       "--silent",
+       "--remote-name",
+       "--location",
+       "--fail",
+       "https://cmake.org/files/v#{cmake_version.sub(/.[0-9]\z/, "")}/#{cmake_archive_name}.tar.gz")
+    sh("tar", "xf", "#{cmake_archive_name}.tar.gz")
+    
     msgpack_version = "2.0.0"
     msgpack_archive_name = "msgpack-#{msgpack_version}"
     sh("curl",
@@ -151,8 +161,9 @@ class GroongaBuilder
     sh("tar", "xf", "#{msgpack_archive_name}.tar.gz")
 
     Dir.chdir(msgpack_archive_name) do
-      sh("./configure",
-         "--prefix=#{absolute_install_prefix}")
+      sh("./../#{cmake_archive_name}/bin/cmake",
+	 "-DCMAKE_INSTALL_PREFIX=#{absolute_instal_prefix}",
+	 ".")
       sh("make", "-j4")
       sh("make", "install")
     end
