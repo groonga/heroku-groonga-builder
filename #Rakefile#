@@ -178,8 +178,9 @@ class GroongaBuilder
        "--remote-header-name",
        "--location",
        "--fail",
-       "https://github.com/lz4/lz4/archive/#{lz4_version}.tar.gz")
-    sh("tar", "xf", "#{lz4_archive_name}.tar.gz")
+       "https://github.com/Cyan4973/lz4/archive/#{lz4_version}.tar.gz")
+    sh("tar", "xf", "#{lz4_archive_name
+}.tar.gz")
 
     Dir.chdir(lz4_archive_name) do
       sh("make", "install", "PREFIX=#{absolute_install_prefix}")
