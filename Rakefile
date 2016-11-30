@@ -178,7 +178,7 @@ class GroongaBuilder
        "--remote-header-name",
        "--location",
        "--fail",
-       "https://github.com/lz4/lz4/archive/#{lz4_version}.tar.gz")
+       "https://github.com/lz4/lz4/archive/v#{lz4_version}.tar.gz")
     sh("tar", "xf", "#{lz4_archive_name}.tar.gz")
 
     Dir.chdir(lz4_archive_name) do
