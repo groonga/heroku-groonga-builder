@@ -150,7 +150,7 @@ class GroongaBuilder
        "https://cmake.org/files/v#{cmake_version.sub(/.[0-9]\z/, "")}/#{cmake_archive_name}.tar.gz")
     sh("tar", "xf", "#{cmake_archive_name}.tar.gz")
     
-    msgpack_version = "2.1.0"
+    msgpack_version = "2.1.1"
     msgpack_archive_name = "msgpack-#{msgpack_version}"
     sh("curl",
        "--silent",
