@@ -140,7 +140,7 @@ class GroongaBuilder
   end
 
   def build_msgpack
-    cmake_version = "3.8.1"
+    cmake_version = "3.8.2"
     cmake_archive_name = "cmake-#{cmake_version}-Linux-x86_64"
     sh("curl",
        "--silent",
