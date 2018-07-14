@@ -101,7 +101,7 @@ class GroongaBuilder
        "#{mecab_archive_name}.tar.gz",
        "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE")
     sh("tar", "xf", "#{mecab_archive_name}.tar.gz")
-    
+
     Dir.chdir(mecab_archive_name) do
       sh("./configure",
          "--prefix=#{absolute_mecab_prefix}")
@@ -140,7 +140,7 @@ class GroongaBuilder
   end
 
   def build_msgpack
-    cmake_version = "3.9.4"
+    cmake_version = "3.11.4"
     cmake_archive_name = "cmake-#{cmake_version}-Linux-x86_64"
     sh("curl",
        "--silent",
@@ -149,8 +149,8 @@ class GroongaBuilder
        "--fail",
        "https://cmake.org/files/v#{cmake_version.sub(/.[0-9]\z/, "")}/#{cmake_archive_name}.tar.gz")
     sh("tar", "xf", "#{cmake_archive_name}.tar.gz")
-    
-    msgpack_version = "2.1.5"
+
+    msgpack_version = "3.0.1"
     msgpack_archive_name = "msgpack-#{msgpack_version}"
     sh("curl",
        "--silent",
@@ -170,7 +170,7 @@ class GroongaBuilder
   end
 
   def build_lz4
-    lz4_version = "1.8.0"
+    lz4_version = "1.8.2"
     lz4_archive_name = "lz4-#{lz4_version}"
     sh("curl",
        "--silent",
